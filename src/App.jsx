@@ -33,22 +33,31 @@ function App() {
     <div className="max-w-2xl w-full bg-white p-8 rounded-lg shadow-lg mx-auto mt-10">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">Mental Health Counselor Assistant</h1>
       <form onSubmit={handleSubmit}>
-        <label className="block text-gray-700 mb-2">
+        <label className="block text-gray-700 mb-2" htmlFor="challenge-textarea">
           Describe the challenge you are facing with a patient:
         </label>
         <textarea
+          id="challenge-textarea"
+          aria-label="Describe the patient challenge"
           className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           rows="4"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="e.g., Patient reports feeling anxious about work and struggles to cope."
+          required
         />
         <button
           type="submit"
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 disabled:bg-blue-300"
+          aria-busy={loading}
+          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 disabled:bg-blue-300 flex items-center"
           disabled={loading}
         >
-          {loading ? 'Generating...' : 'Get Suggestion'}
+          {loading ? (
+            <span className="flex items-center">
+              <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
+              Generating...
+            </span>
+          ) : 'Get Suggestion'}
         </button>
       </form>
       {error && <p className="mt-4 text-red-500">{error}</p>}
