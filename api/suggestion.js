@@ -1,7 +1,7 @@
 // api/suggestion.js
 // Vercel serverless function to call xAI Grok API
 
-const { getSuggestion } = require('../utils/suggestion');
+const { getSuggestion } = require('./utils/suggestion');
 
 module.exports = async (req, res) => {
   const { challenge } = req.body;
