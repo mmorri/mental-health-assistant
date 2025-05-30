@@ -15,7 +15,8 @@ function App() {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch('http://localhost:3001/api/suggestion', {
+      // Use relative path for API to support both local and Vercel deployments
+      const response = await fetch('/api/suggestion', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ challenge: input }),
