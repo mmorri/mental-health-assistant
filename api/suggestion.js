@@ -10,6 +10,6 @@ module.exports = async (req, res) => {
     res.status(200).json({ suggestion });
   } catch (err) {
     console.error('API Error:', err.message);
-    res.status(500).json({ error: err.message || 'Failed to generate suggestion' });
+    res.status(500).json({ error: 'Failed to generate suggestion' });
   }
 };
